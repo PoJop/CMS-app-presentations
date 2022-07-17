@@ -9,9 +9,9 @@ export default function handler(req, res) {
         const io = new ServerIO(httpServer, {
             path: "/api/socketio",
             cors: {
-                origin: "*",
+                origin: "http://localhost:3000",
                 methods: ["GET", "POST"]
-            }
+              }
         });
         res.socket.server.io = io;
         io.on("connection", (socket) => {
