@@ -18,8 +18,7 @@ function runMiddleware(req, res, fn) {
                 const io = new ServerIO(httpServer, {
                     path: "/api/socketio",
                     cors: {
-                        origin: "http://localhost:3000",
-                        methods: ["GET", "POST"]
+                        origin: '*',
                     }
                 });
                 res.socket.server.io = io;
@@ -33,7 +32,7 @@ function runMiddleware(req, res, fn) {
     })
 }
 
-export default async  function handler(req, res) {
+export default async function handler(req, res) {
 
     await runMiddleware(req, res, cors)
 
