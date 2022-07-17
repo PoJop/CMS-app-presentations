@@ -18,7 +18,7 @@ function runMiddleware(req, res, fn) {
                 const io = new ServerIO(httpServer, {
                     path: "/api/socketio",
                     cors: {
-                        origin: '*',
+                        origin: 'http://localhost:3000',
                     }
                 });
                 res.socket.server.io = io;
