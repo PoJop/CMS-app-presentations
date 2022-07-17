@@ -1,7 +1,7 @@
 import { Server as ServerIO } from "socket.io";
 import Cors from 'cors'
 const cors = Cors({
-    origin: "*",
+    origin: "http://localhost:3000",
     methods: ['POST', 'GET', 'HEAD'],
 })
 function runMiddleware(req, res, fn) {
@@ -18,7 +18,7 @@ function runMiddleware(req, res, fn) {
                 const io = new ServerIO(httpServer, {
                     path: "/api/socketio",
                     cors: {
-                        origin: "*",
+                        origin: "http://localhost:3000",
                         methods: ["GET", "POST"]
                     }
                 });
