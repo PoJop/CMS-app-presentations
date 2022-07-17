@@ -8,8 +8,16 @@ export default function handler(req, res) {
         const httpServer = res.socket.server;
         const io = new ServerIO(httpServer, {
             path: "/api/socketio",
-            cors: {
-                origin: "http://localhost:8080"
+            origins: ["http://localhost:8080"],
+
+            handlePreflightRequest: (req, res) => {
+                res.writeHead(200, {
+                    "Access-Control-Allow-Origin": "http://localhost:8080",
+                    "Access-Control-Allow-Methods": "GET,POST",
+                    "Access-Control-Allow-Headers": "my-custom-header",
+                    "Access-Control-Allow-Credentials": true
+                });
+                res.end();
             }
         });
         res.socket.server.io = io;
